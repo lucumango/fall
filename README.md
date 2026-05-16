@@ -1,0 +1,108 @@
+# EDA — QHub Otoño 2026
+
+Análisis exploratorio y clustering de la cohorte **MOD2 Alumnos QHub Otoño 2026** (46 alumnos, Perú).
+
+---
+
+## Dataset
+
+| Campo | Detalle |
+|---|---|
+| Filas | 46 alumnos |
+| Variables | 11 (tras limpieza) |
+| Nulos | 0 |
+| Duplicados | 0 |
+| Fuente | `MOD2 Alumnos QHub Otoño 2026 - Consolidado.csv` |
+
+---
+
+## Hallazgos principales
+
+- **Edad promedio**: 19.9 años (rango 13–27)
+- **Comfort promedio**: 4.15 / 10 — nivel bajo-moderado con alta dispersión
+- **Género**: 72% masculino (33) / 28% femenino (13)
+- **Ciudad**: Lima Metropolitana concentra el 78% de alumnos (36/46)
+- **Área dominante**: Ingeniería de Software / Sistemas / Informática
+- **Módulo**: mayoría en Módulo 1 (35 vs 11 en Módulo 2)
+- `mod` y `comfort` prácticamente no correlacionan (r=0.08)
+
+---
+
+## Figuras generadas
+
+| Figura | Descripción |
+|---|---|
+| `fig1_categoricas.png` | Distribución género, nivel de estudio, ciudades y grupos de edad |
+| `fig2_numericas.png` | Histogramas de edad, comfort y año de nacimiento |
+| `fig3_comfort_area.png` | Boxplot de comfort por área de estudio |
+| `fig4_genero.png` | Violinplot comfort por género + stacked bar nivel de estudio |
+| `fig5_correlacion.png` | Heatmap de correlación entre variables numéricas |
+| `fig6_modulo_comfort.png` | Stripplot comfort por módulo |
+| `fig7_ciudades.png` | Top 15 ciudades de procedencia |
+| `fig8_elbow_silhouette.png` | Codo, Silhouette, Calinski-Harabasz y Davies-Bouldin |
+| `fig9_kmeans_pca.png` | Proyección PCA de K-Means original |
+| `fig10_comparacion_algos.png` | Comparación KMeans vs Agglomerative (ward/complete/average) |
+| `fig11_perfil_clusters.png` | Perfil de clusters: medias, género, comfort y grupos etarios |
+| `figA_diagnostico_k.png` | Diagnóstico de por qué k=9 es un artefacto métrico |
+| `figB_silhouette_plot.png` | Silhouette plot por cluster (k=3 final) |
+| `figC_pca_nombres.png` | PCA con nombre de cada alumno y centroides |
+| `figD_tarjetas_clusters.png` | Tarjetas de perfil detallado por cluster |
+| `figE_radar.png` | Radar de perfil normalizado por cluster |
+
+---
+
+## Clustering
+
+### ¿Por qué no k=9?
+
+La búsqueda automática por silhouette máximo sugirió k=9, pero con 46 alumnos eso genera clusters de 1–5 personas. Un cluster de 1 persona tiene silhouette artificialmente alta — no indica estructura real. Se eligió **k=3** por codo de inercia e interpretabilidad.
+
+### Métricas finales (k=3, K-Means)
+
+| Métrica | Valor |
+|---|---|
+| Silhouette | 0.235 |
+| Calinski-Harabasz | 14.76 |
+| Davies-Bouldin | 1.489 |
+| Varianza explicada PCA (2 PC) | 51.2% |
+
+Scores moderados, esperados para un dataset pequeño con variables mixtas (numéricas + categóricas codificadas) y poca separación natural entre grupos.
+
+### Clusters identificados
+
+**Cluster 0 — Adolescentes en Transición** (n=13, silueta=0.231)
+- Edad media: 16.7 años (grupo Under 18)
+- Comfort: 3.8/10 — los menos cómodos del grupo
+- Género dominante: Femenino
+- Mayoría en Módulo 1, mezcla de secundaria y gap year
+- Ejemplos: Alejandra Huamani (16, Arequipa), Alexis Ospino (17, Junín)
+
+**Cluster 1 — Iniciados con Potencial** (n=19, silueta=0.195)
+- Edad media: 22.1 años (grupo 18–24)
+- Comfort: 4.3/10 — alta dispersión interna
+- Género dominante: Masculino
+- Universitarios en Módulo 1
+- Ejemplos: Alejandra Caceres (26, Cusco), Alexander Zeña (21, Lima)
+
+**Cluster 2 — Avanzados con Confianza Media** (n=14, silueta=0.292)
+- Edad media: 19.9 años
+- Comfort: 4.4/10
+- Género dominante: Masculino
+- **100% Módulo 2** — el cluster más homogéneo y limpio
+- Ejemplos: Alvaro De Tomas (19, Lima), Diego Narvaez (19, Lima)
+
+---
+
+## Scripts
+
+| Script | Descripción |
+|---|---|
+| `eda_fall.py` | EDA completo: limpieza, estadísticas, 11 figuras, clustering exploratorio |
+| `eda_clusters_named.py` | Diagnóstico de k óptimo, clusters con nombres, ejemplos de alumnos, 5 figuras adicionales |
+
+```bash
+python3 eda_fall.py
+python3 eda_clusters_named.py
+```
+
+Requiere: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`
