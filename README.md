@@ -8,7 +8,8 @@ Análisis exploratorio y clustering de la cohorte **MOD2 Alumnos QHub Otoño 202
 
 | Campo | Detalle |
 |---|---|
-| Filas | 46 alumnos |
+| Filas | 42 alumnos (solo Perú) |
+| Removidos | 4 no-peruanos: Brandon Alcántara (México), Ticiana Angelucci (Argentina), José Olarte y Maria Honor (Bolivia) |
 | Variables | 11 (tras limpieza) |
 | Nulos | 0 |
 | Duplicados | 0 |
@@ -21,7 +22,7 @@ Análisis exploratorio y clustering de la cohorte **MOD2 Alumnos QHub Otoño 202
 - **Edad promedio**: 19.9 años (rango 13–27)
 - **Comfort promedio**: 4.15 / 10 — nivel bajo-moderado con alta dispersión
 - **Género**: 72% masculino (33) / 28% femenino (13)
-- **Ciudad**: Lima Metropolitana concentra el 78% de alumnos (36/46)
+- **Ciudad**: Lima Metropolitana concentra el 78% de alumnos peruanos
 - **Área dominante**: Ingeniería de Software / Sistemas / Informática
 - **Módulo**: mayoría en Módulo 1 (35 vs 11 en Módulo 2)
 - `mod` y `comfort` prácticamente no correlacionan (r=0.08)
@@ -61,35 +62,29 @@ La búsqueda automática por silhouette máximo sugirió k=9, pero con 46 alumno
 
 | Métrica | Valor |
 |---|---|
-| Silhouette | 0.235 |
-| Calinski-Harabasz | 14.76 |
-| Davies-Bouldin | 1.489 |
+| Silhouette | 0.240 |
+| Calinski-Harabasz | 13.63 |
+| Davies-Bouldin | 1.453 |
 | Varianza explicada PCA (2 PC) | 51.2% |
 
-Scores moderados, esperados para un dataset pequeño con variables mixtas (numéricas + categóricas codificadas) y poca separación natural entre grupos.
+Scores moderados, esperados para un dataset pequeño con variables mixtas (numéricas + categóricas codificadas) y poca separación natural entre grupos. Leve mejora respecto al análisis con los 46 alumnos originales.
 
 ### Clusters identificados
 
-**Cluster 0 — Adolescentes en Transición** (n=13, silueta=0.231)
+**Cluster 0 — Avanzados con Confianza Media** (n=12, silueta=0.322)
+- Edad media: 20.0 años (grupo 18–24)
+- Comfort: 4.3/10
+- **100% Módulo 2** — el cluster más homogéneo y limpio
+
+**Cluster 1 — Adolescentes en Transición** (n=13, silueta=0.221)
 - Edad media: 16.7 años (grupo Under 18)
 - Comfort: 3.8/10 — los menos cómodos del grupo
-- Género dominante: Femenino
 - Mayoría en Módulo 1, mezcla de secundaria y gap year
-- Ejemplos: Alejandra Huamani (16, Arequipa), Alexis Ospino (17, Junín)
 
-**Cluster 1 — Iniciados con Potencial** (n=19, silueta=0.195)
-- Edad media: 22.1 años (grupo 18–24)
-- Comfort: 4.3/10 — alta dispersión interna
-- Género dominante: Masculino
+**Cluster 2 — Iniciados con Potencial** (n=17, silueta=0.196)
+- Edad media: 21.9 años (grupo 18–24)
+- Comfort: 4.0/10 — alta dispersión interna
 - Universitarios en Módulo 1
-- Ejemplos: Alejandra Caceres (26, Cusco), Alexander Zeña (21, Lima)
-
-**Cluster 2 — Avanzados con Confianza Media** (n=14, silueta=0.292)
-- Edad media: 19.9 años
-- Comfort: 4.4/10
-- Género dominante: Masculino
-- **100% Módulo 2** — el cluster más homogéneo y limpio
-- Ejemplos: Alvaro De Tomas (19, Lima), Diego Narvaez (19, Lima)
 
 ---
 
