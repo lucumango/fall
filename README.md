@@ -93,6 +93,18 @@ Scores moderados, esperados para un dataset pequeño con variables mixtas (numé
 
 ---
 
+## Outliers y datos curiosos
+
+- **Alumno más joven**: Mathias Canales Díaz, **13 años** — y está en **Módulo 2**, no en el 1. El único menor de 14 en todo el grupo y ya va por el módulo avanzado.
+- **Alumnos más grandes**: Dalia Zapata, Leonardo Sánchez y Luis Mejia, **27 años** los tres — en Módulo 1 con comfort bajo (1, 5 y 2 respectivamente). 14 años de diferencia con el más joven.
+- **Mayor comfort del dataset**: Mixu Alarcon, 19 años, Módulo 1 — **9/10**. Outlier positiva clara; quedó en el cluster de "adolescentes" por su perfil categórico.
+- **Menor comfort del dataset**: Dalia Zapata, 27 años — **1/10**. La más grande del Módulo 1 y la menos cómoda de toda la cohorte.
+- **Ángel Antezana, 17 años en Módulo 2**: el más joven del módulo avanzado después de Mathias, con comfort 7/10.
+- **Alejandra Caceres, 26 años, Cusco**: única persona mayor de 25 fuera de Lima, con comfort 7/10 — contrasta con el patrón general.
+- **Diversidad geográfica nula**: 100% de alumnos son de Perú y el 78% de Lima Metropolitana. Esto reduce la varianza real disponible para el clustering.
+
+---
+
 ## Scripts
 
 | Script | Descripción |
