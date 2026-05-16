@@ -101,7 +101,7 @@ Scores moderados, esperados para un dataset pequeño con variables mixtas (numé
 - **Menor comfort del dataset**: Dalia Zapata, 27 años — **1/10**. La más grande del Módulo 1 y la menos cómoda de toda la cohorte.
 - **Ángel Antezana, 17 años en Módulo 2**: el más joven del módulo avanzado después de Mathias, con comfort 7/10.
 - **Alejandra Caceres, 26 años, Cusco**: única persona mayor de 25 fuera de Lima, con comfort 7/10 — contrasta con el patrón general.
-- **Diversidad geográfica nula**: 100% de alumnos son de Perú y el 78% de Lima Metropolitana. Esto reduce la varianza real disponible para el clustering.
+- **Casi todo Perú**: 42/46 alumnos son peruanos; hay 2 de Bolivia, 1 de México y 1 de Argentina — pero el 78% es de Lima Metropolitana, lo que reduce la varianza geográfica real disponible para el clustering.
 
 ---
 
